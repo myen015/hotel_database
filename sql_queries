@@ -1,1 +1,157 @@
+UPDATE price SET cost = cost+500
+where dept_id IN (SELECT dept_id FROM department
+                 WHERE dept_name = 'SPA');
+                 
+                 
+SELECT first_name,last_name,status 
+FROM employee AS ee
+left OUTER JOIN employee_info AS ef on ee.emp_id=ef.emp_id;
 
+
+SELECT  email FROM guest_info
+UNION 
+SELECT email FROM employee_info;
+
+
+SELECT COUNT(emp_id),dept_id
+from employee GROUP BY dept_id;
+
+
+select g.first_name, g.last_name, rt.name
+from guest as g JOIN room_type as rt
+on g.guest_id=rt.room_type_id;
+
+
+delete from dept_admin 
+where dept_id in 
+          (select dept_id 
+          from revenue where sum<1000);
+          
+          
+SELECT g.first_name,g.last_name,p.sum
+from guest g,payment  p 
+where EXISTS 
+          (SELECT payment.guest_id,guest.guest_id 
+          FROM payment,guest 
+          WHERE guest.guest_id = payment.guest_id AND payment.sum<500);      
+          
+          
+SELECT department.dept_name,COUNT(employee.emp_id) AS numOfEmp
+FROM employee
+LEFT JOIN department ON employee.dept_id=department.dept_id
+GROUP BY dept_name
+
+
+SELECT department.dept_name,report.amount 
+FROM department 
+RIGHT JOIN report ON department.dept_id=report.dept_id 
+ORDER BY report.amount;
+
+
+SELECT department.dept_name,AVG(service.cost)
+FROM department 
+JOIN service ON department.dept_id=service.dept_id 
+WHERE department.dept_name = 'Housekeeping';
+
+
+SELECT DISTINCT salary 
+FROM employee e1
+WHERE 2>=
+      (SELECT COUNT(DISTINCT salary)
+      FROM employee e2 
+      WHERE e1.salary<=e2.salary)
+      ORDER BY e1.salary DESC;
+      
+
+SELECT * 
+FROM employee 
+WHERE emp_id <= 
+      (SELECT COUNT(emp_id)/2 
+      from employee);
+      
+
+SELECT * 
+FROM payment 
+WHERE payment_id <=5 
+UNION 
+SELECT * FROM
+     (SELECT * FROM payment  
+     ORDER BY payment.payment_id DESC) 
+      AS p WHERE p.payment_id <=5;
+      
+      
+      
+      
+DELETE e1 FROM employee E1
+INNER JOIN employee e2 
+WHERE e1.emp_id > e2.emp_id 
+AND e1.first_name = e2.first_name 
+AND e1.dept_id = e2.dept_id
+AND e1.salary=e2.salary;
+
+
+SELECT revenue_sum,dept_id
+FROM revenue r1 
+WHERE 0 = (
+                SELECT COUNT( DISTINCT ( r2.revenue_sum ) )
+                FROM revenue r2
+                WHERE r2.revenue_sum > r1.revenue_sum
+            );
+            
+            
+
+CREATE VIEW employee_information AS 
+        SELECT ee.first_name,ee.last_name,ef.phone_no,ef.email
+        FROM employee as ee, employee_info as ef 
+        WHERE ee.emp_id = ef.emp_id;
+        
+        
+Create View newService_name  AS
+          SELECT service.service_name 
+          FROM service 
+          where service.dept_id Not IN 
+          (SELECT department.dept_id 
+          FROM department);      
+          
+          
+          
+          
+DELIMITER $$
+CREATE TRIGGER After_Delete_admin
+AFTER DELETE
+ON dept_admin
+FOR EACH ROW
+BEGIN
+    DELETE FROM выручка
+    WHERE dept_admin.dept_id = DELETED.dept_id;
+END $$
+DELIMITER ;;
+
+
+
+DELIMITER $$
+CREATE TRIGGER dsfa 
+after UPDATE on review
+FOR EACH ROW
+BEGIN
+  if new.rating > old.rating then 
+      UPDATE room_type set price = price * 1.2;
+    end if;
+end $$
+DELIMITER ;;
+
+
+
+DELIMITER $$
+CREATE TRIGGER price_update
+AFTER UPDATE ON price
+FOR EACH ROW
+BEGIN
+UPDATE price
+SET cost = cost + cost * 0.2
+WHERE dept_id = (SELECT dept_id
+                                  FROM department
+                                  WHERE dept_id = 1);
+END $$
+DELIMITER ;;
+     
