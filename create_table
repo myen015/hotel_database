@@ -1,1 +1,1729 @@
 
+-- phpMyAdmin SQL Dump
+-- version 5.2.0
+-- https://www.phpmyadmin.net/
+--
+-- Host: 127.0.0.1
+-- Generation Time: Dec 17, 2022 at 11:36 AM
+-- Server version: 10.4.27-MariaDB
+-- PHP Version: 8.1.12
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+START TRANSACTION;
+SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+
+--
+-- Database: `our_hotel_database`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `department`
+--
+
+CREATE TABLE `department` (
+  `dept_id` int(11) NOT NULL,
+  `dept_name` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `department`
+--
+
+INSERT INTO `department` (`dept_id`, `dept_name`) VALUES
+(1, 'Housekeeping'),
+(2, 'Security'),
+(3, 'SPA'),
+(4, 'Restaurant'),
+(5, 'Engineering'),
+(6, 'Reception');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `dept_admin`
+--
+
+CREATE TABLE `dept_admin` (
+  `dept_admin_id` int(11) NOT NULL,
+  `dept_id` int(11) NOT NULL,
+  `first_name` varchar(50) NOT NULL,
+  `last_name` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `dept_admin`
+--
+
+INSERT INTO `dept_admin` (`dept_admin_id`, `dept_id`, `first_name`, `last_name`) VALUES
+(1, 1, 'Sasha', 'Dolling'),
+(2, 2, 'Alexio', 'Barrie'),
+(3, 3, 'Gilburt', 'Eckery'),
+(4, 4, 'Alvira', 'Sim'),
+(5, 5, 'Early', 'Woolis'),
+(6, 6, 'Elia', 'Shaylor');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `employee`
+--
+
+CREATE TABLE `employee` (
+  `emp_id` int(11) NOT NULL,
+  `first_name` varchar(50) NOT NULL,
+  `last_name` varchar(50) NOT NULL,
+  `dept_id` int(11) NOT NULL,
+  `salary` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `employee`
+--
+
+INSERT INTO `employee` (`emp_id`, `first_name`, `last_name`, `dept_id`, `salary`) VALUES
+(1, 'Paquito', 'Balazin', 1, 9721),
+(2, 'Tammy', 'Cabera', 4, 17396),
+(3, 'Tiertza', 'Whithorn', 6, 22635),
+(4, 'Ly', 'Point', 2, 11394),
+(5, 'Brigid', 'Charon', 1, 13258),
+(6, 'Leisha', 'Karus', 4, 18579),
+(7, 'Sianna', 'Figiovanni', 3, 25182),
+(8, 'Toddy', 'Chastenet', 6, 20680),
+(9, 'Gerrie', 'Skey', 5, 14505),
+(10, 'Rheta', 'Edmund', 4, 5734),
+(11, 'Dre', 'Kitto', 3, 4441),
+(12, 'Jacenta', 'Endrizzi', 1, 9894),
+(13, 'Edithe', 'Checketts', 5, 14960),
+(14, 'Dyanne', 'Mein', 6, 27006),
+(15, 'Ernaline', 'Zelake', 2, 9103),
+(16, 'Ellis', 'Capstake', 2, 17807),
+(17, 'Bathsheba', 'Bowness', 2, 21985),
+(18, 'Alano', 'Ivashin', 3, 10176),
+(19, 'Judon', 'Shenton', 3, 4696),
+(20, 'Jocelin', 'Scriviner', 6, 20976),
+(21, 'Harrison', 'Kasher', 3, 12338),
+(22, 'Doro', 'Ledson', 4, 24278),
+(23, 'Sally', 'Duffy', 5, 15381),
+(24, 'Chalmers', 'Belson', 1, 26188),
+(25, 'Hayley', 'Patmore', 1, 21784),
+(26, 'Artus', 'Collar', 5, 16574),
+(27, 'Cristal', 'Peddie', 4, 3205),
+(28, 'Claire', 'Wyne', 1, 24845),
+(29, 'Aksel', 'Heningham', 3, 15512),
+(30, 'Vernor', 'Broadbear', 5, 6282),
+(31, 'Johny', 'Paler', 1, 19874),
+(32, 'Sarine', 'Ducarel', 2, 7323),
+(33, 'Nancey', 'Yaus', 6, 27120),
+(34, 'Franky', 'Llopis', 6, 1253),
+(35, 'Rudy', 'Bru', 4, 22004),
+(36, 'Ruthi', 'Stoffersen', 3, 20186),
+(37, 'Geordie', 'Mulleary', 3, 17061),
+(38, 'Latrina', 'Hardes', 2, 8551),
+(39, 'Lusa', 'Hartrick', 6, 13872),
+(40, 'Dolores', 'Waldrum', 3, 17256),
+(41, 'Dedra', 'Garrity', 6, 17878),
+(42, 'Charlot', 'Nail', 3, 9364),
+(43, 'Land', 'Spellar', 5, 18307),
+(44, 'Gil', 'Aylen', 4, 14523),
+(45, 'Elbertina', 'Arends', 4, 6480),
+(46, 'Gina', 'Abramcik', 2, 12758),
+(47, 'Margie', 'Cranidge', 2, 26994),
+(48, 'Lazarus', 'McKinney', 4, 2147),
+(49, 'Morgan', 'Bellward', 5, 24074),
+(50, 'Leora', 'Scown', 4, 16720),
+(51, 'Angeli', 'Simoneton', 3, 17280),
+(52, 'Gilbertina', 'Schubuser', 3, 16771),
+(53, 'Kirbie', 'Runchman', 5, 6072),
+(54, 'Chase', 'McSwan', 6, 27678),
+(55, 'Lon', 'Boldero', 6, 16766),
+(56, 'Sisely', 'Tapsfield', 5, 5676),
+(57, 'Sydney', 'Arrol', 4, 26523),
+(58, 'Thia', 'Darey', 3, 4256),
+(59, 'Hildagarde', 'McSkeagan', 5, 23136),
+(60, 'Judd', 'Chotty', 3, 21675),
+(61, 'Kahlil', 'Westoff', 1, 15031),
+(62, 'Dorita', 'Esposita', 3, 23224),
+(63, 'Deerdre', 'Gilstin', 4, 1100),
+(64, 'Alvie', 'Simson', 3, 19682),
+(65, 'Flossi', 'Jopke', 6, 22532),
+(66, 'Yoshiko', 'Grancher', 6, 19179),
+(67, 'Broderic', 'Rosenzveig', 3, 17952),
+(68, 'Myrtice', 'MacHostie', 3, 20557),
+(69, 'Ailsun', 'Casin', 4, 25145),
+(70, 'Fidelia', 'Arnowicz', 5, 12457),
+(71, 'Emilia', 'Sumpner', 4, 24137),
+(72, 'Tommy', 'Daal', 3, 22225),
+(73, 'Virgina', 'Ashe', 2, 14307),
+(74, 'Rozelle', 'Trengrove', 1, 24101),
+(75, 'Patti', 'Gethin', 4, 3038),
+(76, 'Laughton', 'Bartolic', 3, 16419),
+(77, 'Ericha', 'MacGuigan', 3, 5403),
+(78, 'Merill', 'Blick', 4, 15169),
+(79, 'Emlen', 'Farlam', 1, 24961),
+(80, 'Emera', 'Basley', 2, 5202),
+(81, 'Terrye', 'Ruspine', 6, 11834),
+(82, 'Ram', 'Timothy', 3, 18763),
+(83, 'Aurel', 'Castleman', 1, 16621),
+(84, 'Ozzie', 'Buckwell', 6, 11756),
+(85, 'Derick', 'Gutman', 2, 13993),
+(86, 'Elinore', 'Hofler', 3, 18425),
+(87, 'Halsy', 'Pinkstone', 1, 11207),
+(88, 'Amy', 'Dimitriades', 2, 11462),
+(89, 'Sadella', 'Jago', 2, 11622),
+(90, 'Arch', 'Hebner', 5, 3380),
+(91, 'Cass', 'Rigolle', 3, 16906),
+(92, 'Carlie', 'Helix', 6, 18268),
+(93, 'Milly', 'Sleep', 2, 4406),
+(94, 'Maximilien', 'Faraday', 1, 4975),
+(95, 'Flor', 'Hallmark', 2, 27950),
+(96, 'Cooper', 'Lacer', 3, 19564),
+(97, 'Reeva', 'Broom', 4, 16140),
+(98, 'Erhard', 'Clawley', 6, 25663),
+(99, 'Anet', 'Rown', 1, 15815),
+(100, 'Ciro', 'Chadd', 1, 8271);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `employee_info`
+--
+
+CREATE TABLE `employee_info` (
+  `emp_id` int(11) NOT NULL,
+  `status` varchar(50) NOT NULL,
+  `phone_no` int(11) NOT NULL,
+  `email` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `employee_info`
+--
+
+INSERT INTO `employee_info` (`emp_id`, `status`, `phone_no`, `email`) VALUES
+(1, 'Engineer', 957, 'mdungey0@phpbb.com'),
+(2, 'Electrician', 125, 'mheindl1@hhs.gov'),
+(3, 'Construction Expeditor', 780, 'ghawkeswood2@merriam-webster.com'),
+(4, 'Engineer', 985, 'chenbury3@redcross.org'),
+(5, 'Construction Expeditor', 600, 'mridley4@google.es'),
+(6, 'Electrician', 858, 'hfasse5@pen.io'),
+(7, 'Construction Foreman', 114, 'tbrun6@vistaprint.com'),
+(8, 'Surveyor', 707, 'jdummer7@sina.com.cn'),
+(9, 'Estimator', 429, 'lreams8@hostgator.com'),
+(10, 'Electrician', 808, 'elax9@gravatar.com'),
+(11, 'Construction Expeditor', 741, 'ahunnisetta@ibm.com'),
+(12, 'Estimator', 995, 'cteasellb@trellian.com'),
+(13, 'Construction Foreman', 234, 'balveyc@chicagotribune.com'),
+(14, 'Supervisor', 939, 'kcrosiod@tripod.com'),
+(15, 'Construction Foreman', 450, 'kbishope@bluehost.com'),
+(16, 'Architect', 314, 'cfindersf@cam.ac.uk'),
+(17, 'Electrician', 214, 'ehathawayg@adobe.com'),
+(18, 'Construction Expeditor', 756, 'jbaudessonh@auda.org.au'),
+(19, 'Construction Manager', 109, 'wstensoni@wikipedia.org'),
+(20, 'Construction Worker', 662, 'goxerj@4shared.com'),
+(21, 'Construction Worker', 896, 'abamlettk@theglobeandmail.com'),
+(22, 'Supervisor', 419, 'bdenseyl@yahoo.com'),
+(23, 'Construction Expeditor', 483, 'zsuggm@comcast.net'),
+(24, 'Construction Worker', 448, 'gdickonsn@acquirethisname.com'),
+(25, 'Construction Worker', 882, 'lnuttyo@clickbank.net'),
+(26, 'Engineer', 634, 'ktigwellp@mac.com'),
+(27, 'Engineer', 349, 'cloinesq@bluehost.com'),
+(28, 'Architect', 614, 'rfulkerr@quantcast.com'),
+(29, 'Estimator', 284, 'chenrics@mayoclinic.com'),
+(30, 'Engineer', 441, 'ltabert@bandcamp.com'),
+(31, 'Supervisor', 924, 'afodenu@si.edu'),
+(32, 'Supervisor', 362, 'skenealyv@amazon.co.uk'),
+(33, 'Engineer', 640, 'emarcinkusw@theguardian.com'),
+(34, 'Electrician', 774, 'ljodrellecx@house.gov'),
+(35, 'Project Manager', 206, 'siliffy@people.com.cn'),
+(36, 'Construction Expeditor', 429, 'lgrestyz@geocities.jp'),
+(37, 'Supervisor', 427, 'pfurbank10@plala.or.jp'),
+(38, 'Electrician', 933, 'severix11@cnn.com'),
+(39, 'Surveyor', 386, 'frandalston12@cisco.com'),
+(40, 'Construction Expeditor', 599, 'psynan13@networkadvertising.org'),
+(41, 'Electrician', 446, 'ggodart14@addtoany.com'),
+(42, 'Project Manager', 704, 'hricardot15@blog.com'),
+(43, 'Engineer', 670, 'khardbattle16@mozilla.com'),
+(44, 'Surveyor', 172, 'csiderfin17@scribd.com'),
+(45, 'Engineer', 441, 'mrichold18@china.com.cn'),
+(46, 'Electrician', 504, 'kbloss19@bloglovin.com'),
+(47, 'Construction Worker', 438, 'mmcgahy1a@opera.com'),
+(48, 'Engineer', 921, 'bmatthisson1b@google.cn'),
+(49, 'Engineer', 154, 'cnaire1c@squarespace.com'),
+(50, 'Construction Expeditor', 151, 'dprestidge1d@domainmarket.com'),
+(51, 'Estimator', 256, 'vmathwin1e@hud.gov'),
+(52, 'Construction Expeditor', 634, 'gkepp1f@arizona.edu'),
+(53, 'Supervisor', 746, 'rbraiden1g@livejournal.com'),
+(54, 'Construction Worker', 328, 'abovingdon1h@devhub.com'),
+(55, 'Architect', 487, 'mantunes1i@washington.edu'),
+(56, 'Supervisor', 546, 'nbrewerton1j@answers.com'),
+(57, 'Construction Worker', 657, 'nguillotin1k@jugem.jp'),
+(58, 'Engineer', 903, 'vdrewitt1l@desdev.cn'),
+(59, 'Construction Manager', 761, 'jfrost1m@google.cn'),
+(60, 'Architect', 800, 'dalbinson1n@ovh.net'),
+(61, 'Construction Expeditor', 151, 'lstidston1o@stumbleupon.com'),
+(62, 'Construction Manager', 151, 'cnelson1p@meetup.com'),
+(63, 'Construction Expeditor', 507, 'pveasey1q@yellowpages.com'),
+(64, 'Construction Expeditor', 465, 'gguichard1r@google.ru'),
+(65, 'Project Manager', 763, 'gkwietek1s@so-net.ne.jp'),
+(66, 'Surveyor', 307, 'wgethin1t@google.es'),
+(67, 'Construction Foreman', 946, 'mbrolechan1u@about.me'),
+(68, 'Architect', 970, 'bleppo1v@goodreads.com'),
+(69, 'Electrician', 230, 'amorant1w@jugem.jp'),
+(70, 'Construction Expeditor', 915, 'kconklin1x@huffingtonpost.com'),
+(71, 'Supervisor', 965, 'udebernardi1y@gnu.org'),
+(72, 'Engineer', 995, 'kmapples1z@deliciousdays.com'),
+(73, 'Estimator', 337, 'ihuzzay20@miibeian.gov.cn'),
+(74, 'Construction Worker', 786, 'mivanishev21@gmpg.org'),
+(75, 'Supervisor', 278, 'wbriggs22@webs.com'),
+(76, 'Estimator', 493, 'arisley23@simplemachines.org'),
+(77, 'Subcontractor', 815, 'ivarley24@craigslist.org'),
+(78, 'Project Manager', 320, 'ddabbes25@toplist.cz'),
+(79, 'Construction Worker', 899, 'acastanone26@wp.com'),
+(80, 'Engineer', 130, 'msmidmoor27@yellowbook.com'),
+(81, 'Estimator', 595, 'blefleming28@posterous.com'),
+(82, 'Construction Manager', 193, 'glambertazzi29@earthlink.net'),
+(83, 'Construction Worker', 805, 'ctrahar2a@patch.com'),
+(84, 'Architect', 862, 'cgoodbar2b@stumbleupon.com'),
+(85, 'Project Manager', 213, 'ecorain2c@illinois.edu'),
+(86, 'Electrician', 254, 'pbabst2d@vinaora.com'),
+(87, 'Subcontractor', 883, 'lkeaveny2e@huffingtonpost.com'),
+(88, 'Construction Foreman', 250, 'vboig2f@vimeo.com'),
+(89, 'Construction Manager', 958, 'golden2g@economist.com'),
+(90, 'Architect', 120, 'dmafham2h@alibaba.com'),
+(91, 'Construction Foreman', 219, 'zedmonds2i@hugedomains.com'),
+(92, 'Estimator', 664, 'aplet2j@upenn.edu'),
+(93, 'Project Manager', 102, 'aeberts2k@tiny.cc'),
+(94, 'Construction Expeditor', 222, 'lespin2l@bloomberg.com'),
+(95, 'Construction Foreman', 367, 'agoodbar2m@hubpages.com'),
+(96, 'Construction Expeditor', 584, 'arunham2n@theatlantic.com'),
+(97, 'Construction Foreman', 549, 'arosoman2o@mac.com'),
+(98, 'Supervisor', 520, 'sjillitt2p@cyberchimps.com'),
+(99, 'Estimator', 977, 'asamson2q@narod.ru'),
+(100, 'Engineer', 439, 'cdelouch2r@cornell.edu');
+
+-- --------------------------------------------------------
+
+--
+-- Stand-in structure for view `employee_information`
+-- (See below for the actual view)
+--
+CREATE TABLE `employee_information` (
+`first_name` varchar(50)
+,`last_name` varchar(50)
+,`phone_no` int(11)
+,`email` varchar(50)
+);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `guest`
+--
+
+CREATE TABLE `guest` (
+  `guest_id` int(11) NOT NULL,
+  `first_name` varchar(50) NOT NULL,
+  `last_name` varchar(50) NOT NULL,
+  `room_no` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `guest`
+--
+
+INSERT INTO `guest` (`guest_id`, `first_name`, `last_name`, `room_no`) VALUES
+(1, 'Tiena', 'Lemmon', 27),
+(2, 'Leelah', 'Kersting', 76),
+(3, 'Loreen', 'Kopps', 66),
+(4, 'Jillie', 'Neame', 31),
+(5, 'Jennee', 'Keattch', 84),
+(6, 'Gustaf', 'Ezzle', 85),
+(7, 'Kingsly', 'Lemm', 29),
+(8, 'Aldus', 'Popescu', 6),
+(9, 'Kimbell', 'Lipson', 98),
+(10, 'Shayne', 'Wones', 69),
+(11, 'Lannie', 'Midson', 25),
+(12, 'Gretchen', 'Bemand', 57),
+(13, 'Shirl', 'Pranger', 8),
+(14, 'Jude', 'Curling', 89),
+(15, 'Bogey', 'Minghella', 24),
+(16, 'Sheree', 'Ansley', 65),
+(17, 'Emili', 'Austick', 60),
+(18, 'Lief', 'Gabey', 10),
+(19, 'Rae', 'Livingstone', 96),
+(20, 'Wanda', 'McIver', 44),
+(21, 'Querida', 'Bonfield', 30),
+(22, 'Nickey', 'Shankle', 28),
+(23, 'Giffie', 'Jellard', 32),
+(24, 'Aloysia', 'Boggish', 100),
+(25, 'Lindsy', 'Queste', 68),
+(26, 'Lenette', 'Cree', 39),
+(27, 'Ofilia', 'Emig', 19),
+(28, 'Wood', 'Evett', 40),
+(29, 'Zabrina', 'Loudiane', 62),
+(30, 'Carry', 'Pilbeam', 63);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `guest_info`
+--
+
+CREATE TABLE `guest_info` (
+  `guest_id` int(11) NOT NULL,
+  `phone_no` int(11) NOT NULL,
+  `email` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `guest_info`
+--
+
+INSERT INTO `guest_info` (`guest_id`, `phone_no`, `email`) VALUES
+(1, 796, 'wguierre0@harvard.edu'),
+(2, 393, 'daxleby1@scribd.com'),
+(3, 358, 'colanda2@dyndns.org'),
+(4, 753, 'bpatterson3@topsy.com'),
+(5, 968, 'rscarfe4@yellowpages.com'),
+(6, 351, 'tdoman5@sakura.ne.jp'),
+(7, 106, 'mplaster6@yale.edu'),
+(8, 637, 'dmcaneny7@hostgator.com'),
+(9, 731, 'nmccrudden8@opera.com'),
+(10, 539, 'gtee9@google.com'),
+(11, 584, 'askacea@rediff.com'),
+(12, 418, 'ddunmoreb@xing.com'),
+(13, 798, 'ldeboldc@lulu.com'),
+(14, 484, 'rmord@accuweather.com'),
+(15, 973, 'hmadgette@oracle.com'),
+(16, 885, 'lbaxendalef@livejournal.com'),
+(17, 350, 'mcrosfieldg@xrea.com'),
+(18, 406, 'hdiscombeh@toplist.cz'),
+(19, 440, 'agotmanni@accuweather.com'),
+(20, 910, 'bfidginj@blogspot.com'),
+(21, 248, 'chamletk@addthis.com'),
+(22, 349, 'janchorl@amazon.co.uk'),
+(23, 220, 'kdalleym@facebook.com'),
+(24, 224, 'ascoreyn@odnoklassniki.ru'),
+(25, 770, 'bsleighto@yellowpages.com'),
+(26, 924, 'gbriandp@eepurl.com'),
+(27, 823, 'lcatenotq@elpais.com'),
+(28, 797, 'rwatersonr@about.me'),
+(29, 565, 'pchittleburghs@gnu.org'),
+(30, 431, 'pkellert@smh.com.au');
+
+-- --------------------------------------------------------
+
+--
+-- Stand-in structure for view `newservice_name`
+-- (See below for the actual view)
+--
+CREATE TABLE `newservice_name` (
+`service_name` varchar(50)
+);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `payment`
+--
+
+CREATE TABLE `payment` (
+  `payment_id` int(11) NOT NULL,
+  `guest_id` int(11) NOT NULL,
+  `payment_date` date NOT NULL,
+  `payment_type` varchar(50) NOT NULL,
+  `sum` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `payment`
+--
+
+INSERT INTO `payment` (`payment_id`, `guest_id`, `payment_date`, `payment_type`, `sum`) VALUES
+(1, 18, '2022-03-21', 'visa', 520),
+(2, 24, '2022-03-05', 'mastercard', 758),
+(3, 2, '2022-09-18', 'solo', 579),
+(4, 10, '2022-05-03', 'solo', 454),
+(5, 27, '2022-05-02', 'solo', 590),
+(6, 25, '2022-10-21', 'solo', 653),
+(7, 24, '2022-05-29', 'mastercard', 726),
+(8, 16, '2022-08-19', 'solo', 461),
+(9, 19, '2022-03-19', 'solo', 784),
+(10, 12, '2022-07-29', 'mastercard', 462),
+(11, 16, '2022-03-07', 'mastercard', 481),
+(12, 30, '2022-09-28', 'mastercard', 432),
+(13, 6, '2022-10-27', 'visa', 371),
+(14, 14, '2022-11-22', 'visa', 797),
+(15, 6, '2022-03-16', 'visa', 335),
+(16, 8, '2022-06-10', 'visa', 536),
+(17, 7, '2022-11-24', 'mastercard', 523),
+(18, 11, '2022-04-03', 'solo', 816),
+(19, 1, '2022-12-08', 'solo', 734),
+(20, 17, '2022-02-26', 'visa', 711),
+(21, 14, '2022-02-11', 'mastercard', 632),
+(22, 7, '2022-01-06', 'visa', 445),
+(23, 23, '2022-04-17', 'mastercard', 310),
+(24, 15, '2022-08-09', 'mastercard', 631),
+(25, 2, '2022-10-23', 'solo', 513),
+(26, 27, '2022-06-16', 'solo', 478),
+(27, 24, '2022-03-27', 'visa', 567),
+(28, 3, '2022-03-29', 'mastercard', 802),
+(29, 24, '2022-12-10', 'mastercard', 806),
+(30, 21, '2022-01-29', 'solo', 552),
+(31, 16, '2021-12-22', 'solo', 353),
+(32, 13, '2022-12-09', 'visa', 671),
+(33, 3, '2022-06-29', 'mastercard', 370),
+(34, 11, '2022-03-19', 'visa', 416),
+(35, 24, '2022-05-27', 'mastercard', 811),
+(36, 26, '2022-06-27', 'solo', 660),
+(37, 23, '2022-04-18', 'mastercard', 306),
+(38, 22, '2022-07-31', 'mastercard', 733),
+(39, 5, '2022-11-27', 'solo', 374),
+(40, 25, '2022-03-06', 'visa', 511),
+(41, 27, '2022-10-22', 'mastercard', 648),
+(42, 4, '2022-12-07', 'solo', 715),
+(43, 4, '2022-09-12', 'solo', 476),
+(44, 13, '2022-09-24', 'mastercard', 579),
+(45, 11, '2021-12-17', 'mastercard', 682),
+(46, 29, '2022-03-18', 'mastercard', 477),
+(47, 21, '2022-02-09', 'visa', 736),
+(48, 26, '2022-06-27', 'solo', 381),
+(49, 25, '2022-06-05', 'visa', 325),
+(50, 5, '2022-11-04', 'solo', 577),
+(51, 24, '2022-10-30', 'solo', 333),
+(52, 25, '2022-09-07', 'mastercard', 376),
+(53, 29, '2022-01-17', 'solo', 668),
+(54, 23, '2022-02-21', 'mastercard', 675),
+(55, 16, '2022-01-16', 'visa', 333),
+(56, 20, '2022-07-29', 'mastercard', 823),
+(57, 4, '2022-10-31', 'solo', 542),
+(58, 23, '2022-06-03', 'visa', 374),
+(59, 17, '2022-07-31', 'mastercard', 825),
+(60, 21, '2022-07-21', 'visa', 510),
+(61, 30, '2022-05-02', 'visa', 442),
+(62, 27, '2022-06-01', 'mastercard', 849),
+(63, 8, '2022-08-11', 'visa', 713),
+(64, 14, '2022-06-18', 'solo', 692),
+(65, 2, '2022-05-15', 'visa', 846),
+(66, 11, '2022-01-26', 'mastercard', 350),
+(67, 1, '2022-12-10', 'mastercard', 595),
+(68, 30, '2022-10-12', 'mastercard', 541),
+(69, 22, '2022-03-02', 'visa', 779),
+(70, 14, '2022-09-07', 'solo', 541),
+(71, 5, '2022-03-21', 'visa', 360),
+(72, 25, '2022-08-31', 'visa', 326),
+(73, 10, '2022-10-25', 'visa', 321),
+(74, 8, '2022-10-05', 'visa', 411),
+(75, 1, '2022-03-13', 'solo', 691),
+(76, 19, '2022-03-06', 'visa', 834),
+(77, 29, '2022-10-22', 'visa', 748),
+(78, 24, '2022-07-11', 'mastercard', 625),
+(79, 24, '2022-08-02', 'solo', 623),
+(80, 21, '2022-07-15', 'mastercard', 444),
+(81, 2, '2022-01-01', 'mastercard', 705),
+(82, 15, '2022-05-10', 'mastercard', 795),
+(83, 11, '2022-10-29', 'solo', 725),
+(84, 14, '2022-05-07', 'mastercard', 388),
+(85, 5, '2022-05-25', 'solo', 440),
+(86, 26, '2022-12-11', 'solo', 317),
+(87, 29, '2022-07-23', 'visa', 355),
+(88, 15, '2022-01-31', 'mastercard', 455),
+(89, 23, '2022-02-01', 'solo', 440),
+(90, 6, '2022-01-26', 'solo', 718),
+(91, 14, '2022-05-10', 'solo', 336),
+(92, 10, '2022-02-02', 'solo', 694),
+(93, 20, '2022-01-11', 'visa', 807),
+(94, 18, '2022-09-02', 'mastercard', 395),
+(95, 21, '2022-04-17', 'solo', 757),
+(96, 20, '2022-03-09', 'visa', 466),
+(97, 28, '2022-01-20', 'mastercard', 581),
+(98, 20, '2022-12-06', 'visa', 758),
+(99, 14, '2021-12-23', 'solo', 337),
+(100, 5, '2022-05-21', 'mastercard', 648);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `price`
+--
+
+CREATE TABLE `price` (
+  `item_id` int(11) NOT NULL,
+  `item_name` varchar(50) NOT NULL,
+  `dept_id` int(11) NOT NULL,
+  `cost` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `price`
+--
+
+INSERT INTO `price` (`item_id`, `item_name`, `dept_id`, `cost`) VALUES
+(1, 'Psoriasis', 3, 2142),
+(2, 'Ionite APF', 6, 184),
+(3, 'Maximum Strength Mucus Relief', 4, 513),
+(4, 'BP Wash', 5, 30),
+(5, 'Nitrogen', 1, 283),
+(6, 'Androbalance', 3, 2138),
+(7, 'Musco', 2, 184),
+(8, 'Atenolol', 2, 42),
+(9, 'Mucus Relief DM', 4, 785),
+(10, 'VIDEX', 4, 729),
+(11, 'Pollens - Trees, Oak, Red Quercus rubra', 5, 253),
+(12, 'Kroger Dark Tanning Oil', 1, 103),
+(13, 'Nystatin and Triamcinolone Acetonide', 5, 206),
+(14, 'Diclofenac Sodium', 1, 253),
+(15, 'ANTI-WRINKLE AND FIRMING BROAD SPECTRUM SPF18 SUNS', 4, 781),
+(16, 'Eszopiclone', 5, 27),
+(17, 'Cough', 4, 798),
+(18, 'SUGAR FREE GREEN TEA WITH ECHINACEA COUGH SUPPRESS', 5, 151),
+(19, 'eye itch relief', 4, 738),
+(20, 'Secret', 3, 2209),
+(21, 'No Concealer Concealer No.2 Light to Medium', 6, 257),
+(22, 'Terazosin Hydrochloride', 4, 613),
+(23, 'DAILY MOISTURIZING', 6, 41),
+(24, 'Dr. Scholls', 2, 275),
+(25, 'Vaprino A-D', 1, 283),
+(26, 'Childrens Ibuprofen', 3, 2025),
+(27, 'Equate NiteTime', 5, 300),
+(28, 'Sinsin Mulpas', 1, 262),
+(29, 'Happy Happy', 5, 54),
+(30, 'Ceftriaxone', 5, 47),
+(31, 'OXYGEN', 6, 214),
+(32, 'Baclofen', 5, 51),
+(33, 'Lightening Night Cream', 4, 547),
+(34, 'Alba Natural Acnedote', 3, 2094),
+(35, 'Ribavirin', 1, 134),
+(36, 'antacid', 5, 68),
+(37, 'Narasoo Hair Tonic', 4, 733),
+(38, 'Fexofenadine Hydrochloride', 5, 162),
+(39, 'Day time', 1, 39),
+(40, 'Up and Up Aspirin', 6, 106),
+(41, 'Amlodipine Besylate', 4, 651),
+(42, 'Nafcillin', 2, 284),
+(43, 'Lovenox', 5, 50),
+(44, 'Slash Pine', 1, 117),
+(45, 'Ipratropium Bromide', 4, 734),
+(46, 'Dipyridamole', 4, 559),
+(47, 'Viramune', 1, 276),
+(48, 'Fentanyl Citrate', 3, 2123),
+(49, 'Scalpicin', 6, 182),
+(50, 'Heartburn Relief to Go', 1, 21),
+(51, 'Citalopram', 3, 2137),
+(52, 'Proactiv', 2, 75),
+(53, 'Nite Time', 6, 190),
+(54, 'Levofloxacin', 5, 277),
+(55, 'Pre Menstrual relief', 5, 142),
+(56, 'Selegiline Hydrochloride', 2, 212),
+(57, 'JANUVIA', 5, 183),
+(58, 'pharMAX fibro', 6, 225),
+(59, 'American Beech', 2, 185),
+(60, 'Losortan Potassium', 4, 568),
+(61, 'BENZTROPINE MESYLATE', 5, 157),
+(62, 'TRAMADOL HYDROCHLORIDE', 5, 58),
+(63, 'skin elements liquid veil foundation broad spectru', 6, 213),
+(64, 'CENTER-AL - RUMEX ACETOSELLA POLLEN', 5, 137),
+(65, 'Divalproex Sodium', 2, 295),
+(66, 'Escitalopram', 2, 35),
+(67, 'Tamoxifen Citrate', 4, 533),
+(68, 'BareMinerals Golden Dark matte', 4, 749),
+(69, 'Cold and Allergy', 6, 34),
+(70, 'Desipramine Hydrochloride', 6, 297),
+(71, 'CARE ONE', 6, 156),
+(72, 'Fluoxetine', 5, 227),
+(73, 'Aller - Tox 11', 4, 586),
+(74, 'Childrens Mucinex', 2, 126),
+(75, 'Oxygen', 6, 79),
+(76, 'SHISEIDO RADIANT LIFTING FOUNDATION', 3, 2298),
+(77, 'Oxygen', 2, 245),
+(78, 'Oxygen', 3, 2013),
+(79, 'Hemabate', 3, 2262),
+(80, 'Trick or Treat Antibacterial Hand', 1, 144),
+(81, 'Vicks DayQuil', 6, 31),
+(82, 'Meijer kids SPF 50', 5, 22),
+(83, 'Cetirizine Hydrochloride', 3, 2214),
+(84, 'Degree', 1, 96),
+(85, 'Head and Shoulders', 5, 168),
+(86, 'LBEL HYDRATESS', 5, 280),
+(87, 'PredniSONE', 2, 266),
+(88, 'Diovan HCT', 6, 106),
+(89, 'Lotrel', 2, 78),
+(90, 'good sense aller ease', 3, 2082),
+(91, 'Doxycycline Hyclate', 5, 231),
+(92, 'severe cold', 2, 165),
+(93, 'Alpet Q E2', 4, 630),
+(94, 'Phenazopyridine Hydrochloride', 6, 156),
+(95, 'Zolpidem tartrate', 2, 243),
+(96, 'TOPROLXL', 5, 170),
+(97, 'Moore Medical Non Aspirin', 6, 279),
+(98, 'Amlodipine Besylate and Benazepril Hydrochloride', 5, 194),
+(99, 'Vibativ', 1, 197),
+(100, 'Triple Antibiotic and Pain Relief', 4, 795);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `product`
+--
+
+CREATE TABLE `product` (
+  `dept_admin_id` int(11) NOT NULL,
+  `name` varchar(50) NOT NULL,
+  `date` date NOT NULL,
+  `cost` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `product`
+--
+
+INSERT INTO `product` (`dept_admin_id`, `name`, `date`, `cost`) VALUES
+(2, 'Wine - Spumante Bambino White', '2022-01-23', 281),
+(6, 'Bagel - Whole White Sesame', '2022-03-15', 204),
+(2, 'Bagelers', '2021-12-15', 337),
+(1, 'Scotch - Queen Anne', '2022-06-21', 98),
+(4, 'Pastry - Apple Large', '2021-12-24', 405),
+(6, 'Bread - White, Unsliced', '2022-09-05', 111),
+(3, 'Ice Cream Bar - Rolo Cone', '2021-12-31', 70),
+(2, 'Bar - Sweet And Salty Chocolate', '2022-12-02', 274),
+(6, 'Wine - Casablanca Valley', '2022-09-18', 40),
+(2, 'Wine - Vovray Sec Domaine Huet', '2022-04-24', 281),
+(5, 'Sugar - Brown', '2022-05-13', 335),
+(2, 'Olives - Nicoise', '2022-12-10', 376),
+(5, 'Bread Base - Italian', '2022-10-14', 289),
+(6, 'Juice - Apple, 500 Ml', '2022-08-03', 96),
+(3, 'Yogurt - Peach, 175 Gr', '2022-03-19', 181),
+(5, 'Artichokes - Knobless, White', '2022-07-24', 258),
+(1, 'Bag - Clear 7 Lb', '2022-11-22', 175),
+(5, 'Wine - White, Ej', '2022-02-22', 102),
+(2, 'Sour Puss Sour Apple', '2022-07-24', 485),
+(5, 'Pastrami', '2022-04-03', 287),
+(4, 'Liquid Aminios Acid - Braggs', '2022-09-20', 137),
+(2, 'Fish - Artic Char, Cold Smoked', '2022-08-28', 470),
+(4, 'Orange - Blood', '2022-05-13', 86),
+(4, 'Wine - Crozes Hermitage E.', '2022-02-21', 51),
+(3, 'Rice Wine - Aji Mirin', '2022-11-29', 482),
+(3, 'V8 Splash Strawberry Kiwi', '2021-12-28', 341),
+(3, 'Bread - Pain Au Liat X12', '2022-04-14', 301),
+(1, 'Mushroom - Porcini, Dry', '2022-05-18', 263),
+(6, 'Pasta - Angel Hair', '2022-06-19', 163),
+(6, 'Chicken - White Meat With Tender', '2022-09-23', 422),
+(6, 'Wine - Fontanafredda Barolo', '2022-06-22', 48),
+(6, 'Apricots - Dried', '2022-11-22', 13),
+(6, 'Wine - Wyndham Estate Bin 777', '2022-11-25', 81),
+(3, 'Cake - Dulce De Leche', '2022-03-24', 169),
+(2, 'Fennel - Seeds', '2022-06-16', 381),
+(6, 'Pastry - Raisin Muffin - Mini', '2022-06-20', 44),
+(4, 'Juice - Pineapple, 341 Ml', '2022-01-26', 183),
+(4, 'Pork - Belly Fresh', '2022-08-16', 164),
+(5, 'Liqueur Banana, Ramazzotti', '2022-05-15', 47),
+(5, 'Pasta - Rotini, Dry', '2022-04-21', 370),
+(3, 'Ostrich - Prime Cut', '2022-08-08', 193),
+(4, 'Wine - Chablis 2003 Champs', '2022-09-19', 151),
+(5, 'Coffee - Decaffeinato Coffee', '2022-08-07', 44),
+(5, 'Bread - Crumbs, Bulk', '2022-07-24', 435),
+(2, 'Wine - Delicato Merlot', '2022-02-24', 131),
+(2, 'Extract - Lemon', '2022-04-14', 432),
+(5, 'Muffin Batt - Carrot Spice', '2022-10-11', 18),
+(3, 'Sponge Cake Mix - Vanilla', '2022-10-10', 352),
+(2, 'Mushroom - Crimini', '2021-12-16', 201),
+(4, 'Wine - Acient Coast Caberne', '2022-10-27', 332),
+(6, 'Bread - Pullman, Sliced', '2022-09-06', 389),
+(4, 'Pie Box - Cello Window 2.5', '2022-11-20', 201),
+(3, 'Icecream - Dstk Super Cone', '2021-12-19', 72),
+(6, 'Chilli Paste, Hot Sambal Oelek', '2022-04-26', 132),
+(3, 'Soap - Pine Sol Floor Cleaner', '2022-05-03', 407),
+(2, 'Ice Cream - Fudge Bars', '2022-01-03', 137),
+(2, 'Flower - Commercial Bronze', '2022-04-16', 356),
+(4, 'Fork - Plastic', '2022-09-18', 124),
+(2, 'Muffin Mix - Blueberry', '2022-05-09', 364),
+(5, 'Liners - Baking Cups', '2022-04-18', 268),
+(6, 'Chef Hat 20cm', '2022-10-27', 286),
+(2, 'Sea Bass - Whole', '2022-09-03', 406),
+(2, 'Soup - Campbells Beef Stew', '2022-08-19', 436),
+(4, 'Bread - 10 Grain Parisian', '2022-01-27', 394),
+(2, 'Chocolate Bar - Smarties', '2022-07-25', 53),
+(6, 'Lettuce - Green Leaf', '2021-12-29', 261),
+(1, 'Salmon - Atlantic, Fresh, Whole', '2022-09-19', 463),
+(2, 'Potatoes - Yukon Gold 5 Oz', '2022-02-11', 75),
+(3, 'Beer - Tetleys', '2022-04-28', 177),
+(4, 'Rappini - Andy Boy', '2022-06-02', 353),
+(4, 'Wine - Chablis J Moreau Et Fils', '2022-07-28', 322),
+(4, 'Dome Lid Clear P92008h', '2022-07-18', 169),
+(4, 'Cheese - Valancey', '2022-06-21', 40),
+(2, 'Wine - Vouvray Cuvee Domaine', '2022-11-12', 179),
+(6, 'Lettuce Romaine Chopped', '2022-08-08', 394),
+(3, 'Kellogs Cereal In A Cup', '2022-02-14', 209),
+(6, 'Spinach - Frozen', '2022-04-07', 41),
+(2, 'Red Cod Fillets - 225g', '2022-03-08', 456),
+(2, 'Spring Roll Wrappers', '2022-04-26', 166),
+(4, 'Lettuce - Treviso', '2022-12-05', 78),
+(6, 'Red Cod Fillets - 225g', '2022-05-26', 203),
+(3, 'Praline Paste', '2022-03-04', 351),
+(3, 'Tomatoes - Heirloom', '2022-11-20', 350),
+(2, 'Celery Root', '2022-04-29', 181),
+(6, 'Cabbage - Savoy', '2022-11-19', 416),
+(6, 'Mushroom - Chantrelle, Fresh', '2022-07-08', 288),
+(5, 'Tomatoes - Plum, Canned', '2022-08-14', 145),
+(4, 'Water - Evian 355 Ml', '2022-04-30', 56),
+(3, 'Plate - Foam, Bread And Butter', '2022-01-02', 251),
+(1, 'Wine - Peller Estates Late', '2022-02-04', 300),
+(5, 'Cheese - Oka', '2022-05-11', 351),
+(6, 'Trueblue - Blueberry 12x473ml', '2022-09-22', 103),
+(2, 'Fish - Scallops, Cold Smoked', '2022-06-09', 316),
+(3, 'Beets - Mini Golden', '2022-01-25', 103),
+(4, 'V8 - Berry Blend', '2022-09-24', 132),
+(5, 'Glycerine', '2022-11-19', 179),
+(6, 'Star Anise, Whole', '2022-02-08', 30),
+(6, 'Bread - Triangle White', '2022-10-25', 467),
+(3, 'Whmis Spray Bottle Graduated', '2022-03-19', 169),
+(5, 'Wine - Hardys Bankside Shiraz', '2022-06-29', 320);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `report`
+--
+
+CREATE TABLE `report` (
+  `report_id` int(11) NOT NULL,
+  `year` int(11) NOT NULL,
+  `amount` int(11) NOT NULL,
+  `month` int(11) NOT NULL,
+  `dept_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `report`
+--
+
+INSERT INTO `report` (`report_id`, `year`, `amount`, `month`, `dept_id`) VALUES
+(1, 2022, 24774, 2, 2),
+(2, 2021, 77615, 10, 6),
+(3, 2022, 51206, 6, 5),
+(4, 2022, 83017, 9, 6),
+(5, 2021, 28434, 9, 5),
+(6, 2021, 99440, 9, 4),
+(7, 2022, 49973, 1, 5),
+(8, 2022, 41827, 6, 5),
+(9, 2021, 16382, 3, 2),
+(10, 2022, 77715, 11, 1),
+(11, 2022, 62812, 9, 1),
+(12, 2021, 53964, 9, 6),
+(13, 2021, 24519, 12, 6),
+(14, 2021, 14070, 7, 2),
+(15, 2021, 43950, 1, 5),
+(16, 2021, 12694, 9, 1),
+(17, 2021, 53499, 9, 5),
+(18, 2021, 37643, 9, 3),
+(19, 2022, 26288, 5, 2),
+(20, 2022, 93849, 12, 2),
+(21, 2022, 47530, 12, 4),
+(22, 2022, 63971, 11, 5),
+(23, 2021, 13414, 3, 5),
+(24, 2022, 28138, 12, 3),
+(25, 2021, 36289, 11, 5),
+(26, 2022, 60346, 4, 3),
+(27, 2021, 16118, 11, 6),
+(28, 2021, 64639, 7, 2),
+(29, 2022, 40525, 3, 4),
+(30, 2022, 48369, 7, 6),
+(31, 2022, 55046, 9, 6),
+(32, 2021, 20342, 3, 6),
+(33, 2021, 40820, 10, 5),
+(34, 2022, 33681, 2, 3),
+(35, 2022, 81587, 9, 1),
+(36, 2022, 16458, 6, 1),
+(37, 2021, 63126, 12, 3),
+(38, 2021, 71022, 4, 6),
+(39, 2022, 45370, 3, 2),
+(40, 2021, 26861, 12, 4),
+(41, 2021, 80721, 1, 3),
+(42, 2021, 67620, 4, 6),
+(43, 2022, 44352, 7, 5),
+(44, 2022, 69619, 10, 5),
+(45, 2021, 23159, 8, 5),
+(46, 2022, 24218, 6, 4),
+(47, 2021, 38435, 6, 4),
+(48, 2022, 93161, 3, 4),
+(49, 2021, 76702, 5, 2),
+(50, 2022, 18645, 6, 2),
+(51, 2022, 89682, 12, 1),
+(52, 2022, 57368, 2, 4),
+(53, 2022, 78339, 9, 6),
+(54, 2022, 96926, 9, 1),
+(55, 2021, 67313, 7, 4),
+(56, 2022, 12847, 2, 4),
+(57, 2021, 11612, 2, 5),
+(58, 2021, 95765, 7, 1),
+(59, 2021, 12106, 3, 6),
+(60, 2021, 63111, 4, 5),
+(61, 2021, 47819, 3, 6),
+(62, 2022, 44229, 12, 5),
+(63, 2021, 32969, 2, 2),
+(64, 2021, 83543, 12, 5),
+(65, 2022, 10399, 8, 2),
+(66, 2021, 24489, 12, 3),
+(67, 2022, 32290, 8, 5),
+(68, 2021, 41888, 12, 2),
+(69, 2021, 22860, 1, 3),
+(70, 2021, 59660, 12, 6),
+(71, 2021, 35043, 7, 3),
+(72, 2022, 93232, 4, 1),
+(73, 2022, 82579, 12, 6),
+(74, 2021, 26166, 3, 3),
+(75, 2022, 26111, 12, 2),
+(76, 2021, 43099, 8, 4),
+(77, 2022, 80013, 11, 1),
+(78, 2022, 75851, 11, 6),
+(79, 2021, 85983, 10, 1),
+(80, 2021, 85952, 7, 6),
+(81, 2022, 80944, 6, 6),
+(82, 2022, 17844, 6, 4),
+(83, 2022, 85032, 10, 3),
+(84, 2021, 64391, 7, 4),
+(85, 2021, 57753, 5, 3),
+(86, 2021, 24328, 7, 1),
+(87, 2021, 53319, 12, 2),
+(88, 2022, 18001, 9, 4),
+(89, 2021, 76035, 5, 6),
+(90, 2022, 26688, 10, 2),
+(91, 2021, 41716, 7, 3),
+(92, 2021, 13106, 8, 3),
+(93, 2021, 13634, 5, 5),
+(94, 2021, 26191, 4, 5),
+(95, 2021, 61152, 2, 1),
+(96, 2021, 70100, 5, 1),
+(97, 2021, 34204, 9, 1),
+(98, 2022, 48655, 4, 1),
+(99, 2022, 75677, 4, 5),
+(100, 2022, 27952, 6, 3);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `reservation`
+--
+
+CREATE TABLE `reservation` (
+  `reserv_id` int(11) NOT NULL,
+  `room_no` int(11) NOT NULL,
+  `in_date` date NOT NULL,
+  `out_date` date NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `reservation`
+--
+
+INSERT INTO `reservation` (`reserv_id`, `room_no`, `in_date`, `out_date`) VALUES
+(1, 54, '2023-02-14', '2023-02-05'),
+(2, 9, '2023-10-17', '2023-11-16'),
+(3, 100, '2023-10-22', '2023-07-08'),
+(4, 84, '2023-03-28', '2023-05-09'),
+(5, 28, '2023-02-12', '2023-06-16'),
+(6, 11, '2023-10-14', '2023-03-14'),
+(7, 10, '2023-06-02', '2023-05-21'),
+(8, 79, '2023-02-14', '2023-05-23'),
+(9, 43, '2023-02-26', '2023-10-26'),
+(10, 25, '2023-10-09', '2023-06-10'),
+(11, 10, '2023-03-09', '2023-03-18'),
+(12, 31, '2023-09-19', '2023-10-17'),
+(13, 71, '2023-11-04', '2023-08-26'),
+(14, 51, '2022-12-16', '2023-10-13'),
+(15, 77, '2023-02-28', '2023-01-12'),
+(16, 51, '2023-04-24', '2023-04-20'),
+(17, 83, '2023-01-01', '2023-05-20'),
+(18, 75, '2023-03-29', '2023-02-16'),
+(19, 1, '2023-05-12', '2023-10-23'),
+(20, 40, '2023-03-05', '2023-06-15'),
+(21, 36, '2023-01-18', '2023-09-08'),
+(22, 10, '2023-01-02', '2023-06-02'),
+(23, 54, '2023-10-31', '2023-05-17'),
+(24, 63, '2023-08-12', '2023-11-28'),
+(25, 20, '2023-04-13', '2023-04-20'),
+(26, 5, '2023-11-19', '2023-06-11'),
+(27, 95, '2023-11-17', '2023-05-05'),
+(28, 45, '2023-04-28', '2023-12-09'),
+(29, 24, '2023-08-29', '2023-08-07'),
+(30, 87, '2023-07-28', '2023-02-17'),
+(31, 69, '2023-01-03', '2023-03-30'),
+(32, 72, '2023-03-21', '2023-06-06'),
+(33, 74, '2023-10-08', '2023-04-18'),
+(34, 26, '2023-05-17', '2023-01-08'),
+(35, 45, '2023-04-19', '2023-12-08'),
+(36, 84, '2023-03-06', '2023-08-04'),
+(37, 86, '2023-02-15', '2023-05-02'),
+(38, 37, '2023-05-24', '2023-04-26'),
+(39, 50, '2023-08-31', '2023-12-02'),
+(40, 66, '2023-01-19', '2023-08-18'),
+(41, 26, '2023-04-21', '2023-10-25'),
+(42, 89, '2023-02-21', '2023-09-07'),
+(43, 6, '2023-10-01', '2023-05-29'),
+(44, 78, '2023-05-16', '2023-09-27'),
+(45, 54, '2023-11-17', '2023-11-14'),
+(46, 52, '2022-12-15', '2023-05-16'),
+(47, 10, '2023-04-20', '2023-06-24'),
+(48, 73, '2023-05-31', '2023-09-23'),
+(49, 28, '2023-07-30', '2023-03-25'),
+(50, 46, '2023-10-24', '2023-10-21'),
+(51, 95, '2023-06-07', '2023-01-28'),
+(52, 88, '2023-02-10', '2023-05-21'),
+(53, 92, '2023-02-19', '2023-01-28'),
+(54, 14, '2022-12-22', '2023-03-22'),
+(55, 18, '2023-01-06', '2023-10-18'),
+(56, 58, '2023-04-11', '2023-02-22'),
+(57, 100, '2023-01-18', '2023-03-06'),
+(58, 69, '2023-05-29', '2023-03-02'),
+(59, 78, '2023-09-15', '2022-12-16'),
+(60, 73, '2023-02-08', '2023-03-19'),
+(61, 11, '2023-01-15', '2023-09-05'),
+(62, 41, '2023-03-30', '2023-03-08'),
+(63, 59, '2023-10-27', '2023-03-20'),
+(64, 54, '2023-05-20', '2023-11-18'),
+(65, 41, '2023-10-13', '2023-03-28'),
+(66, 24, '2023-09-08', '2023-11-08'),
+(67, 5, '2023-02-02', '2023-06-28'),
+(68, 60, '2023-08-26', '2023-06-14'),
+(69, 35, '2023-02-23', '2023-10-21'),
+(70, 5, '2023-06-12', '2023-06-25'),
+(71, 22, '2023-08-14', '2023-07-20'),
+(72, 37, '2023-06-29', '2023-02-17'),
+(73, 73, '2023-01-01', '2023-01-25'),
+(74, 91, '2023-04-26', '2023-04-16'),
+(75, 47, '2023-02-01', '2023-08-01'),
+(76, 43, '2023-06-17', '2023-03-05'),
+(77, 47, '2023-06-01', '2023-02-26'),
+(78, 80, '2023-01-14', '2023-01-21'),
+(79, 67, '2023-08-05', '2023-03-19'),
+(80, 1, '2023-07-09', '2023-08-22'),
+(81, 6, '2023-12-08', '2023-09-02'),
+(82, 26, '2023-09-25', '2023-03-10'),
+(83, 76, '2022-12-21', '2023-07-16'),
+(84, 39, '2023-04-29', '2023-01-02'),
+(85, 68, '2023-07-20', '2023-10-24'),
+(86, 10, '2023-12-03', '2022-12-21'),
+(87, 73, '2023-04-04', '2022-12-14'),
+(88, 60, '2023-11-26', '2023-06-01'),
+(89, 85, '2023-06-01', '2023-04-29'),
+(90, 73, '2023-04-04', '2023-10-10'),
+(91, 1, '2023-06-20', '2023-01-21'),
+(92, 55, '2023-03-15', '2023-10-29'),
+(93, 62, '2023-06-05', '2023-03-25'),
+(94, 1, '2023-08-07', '2023-10-06'),
+(95, 86, '2023-03-18', '2023-02-07'),
+(96, 12, '2023-11-30', '2023-11-07'),
+(97, 88, '2023-06-15', '2023-07-12'),
+(98, 81, '2023-09-23', '2023-01-21'),
+(99, 88, '2023-03-07', '2023-08-17'),
+(100, 82, '2023-05-20', '2023-04-25');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `revenue`
+--
+
+CREATE TABLE `revenue` (
+  `revenue_id` int(11) NOT NULL,
+  `dept_id` int(11) NOT NULL,
+  `date` date NOT NULL,
+  `revenue_sum` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `revenue`
+--
+
+INSERT INTO `revenue` (`revenue_id`, `dept_id`, `date`, `revenue_sum`) VALUES
+(1, 3, '2022-11-30', 664),
+(2, 1, '2022-01-02', 408),
+(3, 2, '2022-06-10', 5511),
+(4, 3, '2022-09-17', 483),
+(5, 5, '2022-07-18', 7418),
+(6, 2, '2022-10-08', 9150),
+(7, 6, '2022-10-09', 2315),
+(8, 3, '2022-07-05', 9389),
+(9, 4, '2022-01-24', 3513),
+(10, 4, '2022-10-30', 6407),
+(11, 4, '2022-08-23', 4735),
+(12, 6, '2022-06-02', 6108),
+(13, 4, '2022-08-23', 960),
+(14, 4, '2022-03-22', 2986),
+(15, 4, '2022-05-31', 768),
+(16, 2, '2022-07-19', 6805),
+(17, 2, '2022-07-17', 8508),
+(18, 2, '2022-06-02', 8494),
+(19, 1, '2022-07-04', 4712),
+(20, 1, '2022-10-10', 9516),
+(21, 5, '2022-02-19', 4392),
+(22, 2, '2022-09-15', 8935),
+(23, 6, '2022-03-30', 8418),
+(24, 2, '2022-09-04', 4504),
+(25, 2, '2022-07-25', 3287),
+(26, 2, '2022-07-08', 9204),
+(27, 3, '2022-08-05', 4948),
+(28, 3, '2022-03-25', 8575),
+(29, 2, '2022-02-20', 9384),
+(30, 3, '2022-05-18', 361),
+(31, 1, '2022-09-08', 9508),
+(32, 3, '2022-06-15', 660),
+(33, 2, '2022-04-09', 7021),
+(34, 3, '2022-05-27', 9913),
+(35, 4, '2022-11-14', 7364),
+(36, 5, '2022-10-21', 1910),
+(37, 5, '2022-05-22', 5993),
+(38, 5, '2022-01-15', 7349),
+(39, 2, '2022-09-04', 5391),
+(40, 6, '2022-10-07', 586),
+(41, 2, '2022-07-10', 5939),
+(42, 1, '2022-07-05', 3941),
+(43, 3, '2022-08-11', 6606),
+(44, 5, '2022-11-04', 1017),
+(45, 2, '2022-02-09', 4732),
+(46, 1, '2022-05-12', 2269),
+(47, 6, '2022-07-27', 8971),
+(48, 3, '2022-04-23', 9610),
+(49, 3, '2022-07-17', 3936),
+(50, 5, '2022-12-01', 7866),
+(51, 1, '2022-03-06', 4944),
+(52, 6, '2022-11-14', 8887),
+(53, 1, '2022-10-01', 2136),
+(54, 3, '2022-08-06', 2768),
+(55, 5, '2022-11-16', 3567),
+(56, 5, '2021-12-31', 2965),
+(57, 2, '2022-11-01', 5021),
+(58, 2, '2022-04-27', 680),
+(59, 3, '2022-07-07', 1338),
+(60, 5, '2022-05-24', 1559),
+(61, 1, '2022-01-22', 4488),
+(62, 2, '2022-01-01', 3254),
+(63, 3, '2022-04-14', 6264),
+(64, 1, '2022-05-17', 2655),
+(65, 5, '2022-02-11', 4100),
+(66, 5, '2022-10-05', 8949),
+(67, 1, '2022-01-21', 7678),
+(68, 4, '2022-02-12', 9114),
+(69, 1, '2022-07-19', 5912),
+(70, 5, '2022-08-16', 4530),
+(71, 2, '2022-01-25', 9429),
+(72, 5, '2022-10-08', 2895),
+(73, 5, '2021-12-26', 8963),
+(74, 6, '2022-05-19', 8640),
+(75, 6, '2022-12-11', 9892),
+(76, 5, '2022-02-07', 7115),
+(77, 5, '2022-06-29', 255),
+(78, 6, '2022-05-22', 9197),
+(79, 6, '2022-01-25', 9361),
+(80, 2, '2022-11-30', 7399),
+(81, 3, '2022-05-17', 4605),
+(82, 3, '2022-11-23', 6282),
+(83, 2, '2022-08-06', 8736),
+(84, 4, '2022-04-19', 7315),
+(85, 6, '2022-12-03', 8566),
+(86, 4, '2022-07-04', 3224),
+(87, 1, '2022-01-12', 4918),
+(88, 1, '2021-12-24', 7664),
+(89, 3, '2022-04-27', 5256),
+(90, 5, '2022-07-31', 7810),
+(91, 2, '2021-12-19', 3628),
+(92, 6, '2022-08-14', 3685),
+(93, 1, '2022-01-15', 4579),
+(94, 6, '2022-05-25', 218),
+(95, 3, '2021-12-31', 2098),
+(96, 2, '2022-02-04', 1647),
+(97, 6, '2022-06-05', 2700),
+(98, 5, '2022-05-25', 1614),
+(99, 5, '2022-02-27', 6990),
+(100, 2, '2021-12-31', 5683);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `review`
+--
+
+CREATE TABLE `review` (
+  `review_id` int(11) NOT NULL,
+  `room_no` int(11) NOT NULL,
+  `rating` int(11) NOT NULL,
+  `comments` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `review`
+--
+
+INSERT INTO `review` (`review_id`, `room_no`, `rating`, `comments`) VALUES
+(1, 10, 1, 'Juliett Delta Golf Hotel Romeo Quebec Foxtrot Vict'),
+(2, 68, 4, 'Romeo Whiskey Quebec Uniform Sierra Oscar Alfa Ind'),
+(3, 54, 5, 'Bravo Sierra Delta Whiskey Oscar India Papa Tango '),
+(4, 77, 5, 'November Lima Papa Tango Sierra Hotel Uniform Queb'),
+(5, 100, 1, 'Papa Echo Romeo Golf Victor Uniform Tango November'),
+(6, 47, 4, 'India Papa Juliett Uniform Bravo Quebec Alfa Mike '),
+(7, 65, 4, 'X-ray Juliett Whiskey Charlie November Papa Mike O'),
+(8, 59, 5, 'Whiskey Bravo Zulu Kilo X-ray Yankee Golf November'),
+(9, 87, 1, 'Golf Romeo Juliett Papa Foxtrot India Whiskey Hote'),
+(10, 32, 1, 'Lima Foxtrot Kilo Hotel Juliett Alfa Oscar Bravo E'),
+(11, 99, 1, 'X-ray Oscar Bravo Golf Papa Quebec India Echo Lima'),
+(12, 59, 5, 'Quebec X-ray Mike Yankee Victor Oscar Charlie Whis'),
+(13, 79, 5, 'Quebec Delta November Bravo Papa X-ray Whiskey Cha'),
+(14, 53, 1, 'Delta India Charlie Kilo Zulu Hotel Whiskey Juliet'),
+(15, 75, 5, 'Echo Delta X-ray Whiskey Alfa Hotel Charlie Novemb'),
+(16, 98, 1, 'Tango Sierra Yankee Papa Bravo Zulu Victor Juliett'),
+(17, 90, 3, 'Kilo India Golf Mike Papa Uniform Romeo Bravo Vict'),
+(18, 57, 1, 'Foxtrot Quebec Whiskey Zulu Victor Delta Echo Kilo'),
+(19, 37, 2, 'Golf November Oscar Echo Whiskey Kilo Alfa Victor '),
+(20, 46, 3, 'Lima November Hotel India Quebec Oscar Charlie Yan'),
+(21, 58, 3, 'Oscar Uniform Echo Sierra Yankee Alfa Lima Quebec '),
+(22, 53, 1, 'Romeo Kilo Bravo Sierra Victor Foxtrot Echo Papa L'),
+(23, 28, 2, 'Tango Uniform Golf Romeo India Victor Kilo Foxtrot'),
+(24, 56, 2, 'Zulu X-ray Victor Papa Romeo Alfa Delta Golf Kilo '),
+(25, 47, 5, 'Kilo Mike Alfa Foxtrot X-ray India Uniform Oscar Q'),
+(26, 89, 1, 'Delta X-ray Echo Yankee Bravo Mike Golf Kilo Foxtr'),
+(27, 33, 2, 'Yankee Papa Echo Juliett Charlie Oscar Mike Zulu T'),
+(28, 18, 3, 'Sierra Quebec Kilo Golf Lima Tango Whiskey Uniform'),
+(29, 44, 3, 'Romeo Uniform Oscar Foxtrot Delta India Tango Echo'),
+(30, 3, 5, 'Uniform Golf Kilo Delta Yankee Sierra November Fox'),
+(31, 28, 1, 'November Yankee Uniform Echo Zulu Kilo Papa Romeo '),
+(32, 39, 5, 'Zulu Oscar X-ray Sierra India Echo Foxtrot Papa Ta'),
+(33, 17, 1, 'Bravo Uniform Alfa Oscar Tango Foxtrot Sierra Indi'),
+(34, 26, 4, 'Alfa Hotel Zulu Papa November Mike Sierra Echo Que'),
+(35, 57, 1, 'Echo Hotel Oscar Quebec Uniform Tango Papa Novembe'),
+(36, 87, 3, 'Victor Juliett Oscar Papa Lima Whiskey Mike Foxtro'),
+(37, 52, 4, 'Alfa Mike Sierra India Zulu Charlie Hotel Whiskey '),
+(38, 57, 4, 'November Romeo Mike Echo Papa Victor Foxtrot Oscar'),
+(39, 32, 2, 'Sierra Yankee Hotel Mike Tango Uniform November Fo'),
+(40, 78, 3, 'Sierra Zulu November Bravo Hotel Lima Victor Papa '),
+(41, 98, 2, 'Quebec Uniform November Bravo Oscar Whiskey Hotel '),
+(42, 46, 2, 'Lima Charlie Tango Whiskey Kilo Hotel Zulu X-ray Y'),
+(43, 61, 2, 'India November Alfa Bravo Papa Uniform Kilo Tango '),
+(44, 63, 5, 'Alfa Zulu Quebec India Uniform Lima Tango Romeo Mi'),
+(45, 39, 5, 'Bravo Golf India Romeo Alfa Oscar Tango Kilo Quebe'),
+(46, 66, 4, 'Uniform Kilo November Victor Zulu Romeo Echo Sierr'),
+(47, 77, 2, 'Lima Alfa X-ray Juliett Zulu Oscar Yankee Tango Br'),
+(48, 79, 2, 'Uniform Kilo Whiskey Delta Tango Oscar Foxtrot Nov'),
+(49, 64, 2, 'Tango Lima Romeo Delta Quebec Uniform Papa Sierra '),
+(50, 40, 2, 'Quebec Whiskey Foxtrot Romeo Juliett India Victor '),
+(51, 37, 3, 'Delta Tango Papa Mike Whiskey Uniform Hotel Quebec'),
+(52, 22, 4, 'Golf Victor Lima Quebec Uniform Foxtrot India X-ra'),
+(53, 31, 2, 'November Hotel Echo Juliett Foxtrot Yankee Papa Al'),
+(54, 52, 2, 'Yankee Kilo Uniform Mike Delta Charlie Juliett Nov'),
+(55, 96, 1, 'X-ray Golf Victor Echo India Oscar Charlie Tango U'),
+(56, 47, 4, 'Mike Kilo Bravo Delta Uniform Yankee Oscar Zulu Ch'),
+(57, 27, 5, 'Papa Charlie Lima India Romeo Mike Zulu Tango Vict'),
+(58, 59, 1, 'Mike November Tango Yankee Oscar Romeo Kilo Quebec'),
+(59, 83, 4, 'Mike Yankee Foxtrot Oscar Golf Sierra Delta Victor'),
+(60, 91, 2, 'Hotel Uniform Victor Golf Delta India Yankee Romeo'),
+(61, 41, 2, 'Tango Golf Juliett Bravo Alfa Quebec Sierra Oscar '),
+(62, 6, 4, 'Zulu X-ray Oscar Uniform Juliett Kilo Lima Papa Ta'),
+(63, 63, 1, 'Sierra Alfa Uniform November Foxtrot Charlie Victo'),
+(64, 72, 3, 'Charlie X-ray November Zulu Uniform Lima Golf Sier'),
+(65, 68, 3, 'Lima Delta Zulu Golf Tango Victor Kilo Foxtrot Hot'),
+(66, 79, 1, 'India Delta Foxtrot Zulu Charlie Hotel Quebec Brav'),
+(67, 30, 3, 'Bravo Alfa Whiskey Tango Uniform Hotel Lima Victor'),
+(68, 15, 3, 'Whiskey Lima Charlie Alfa Hotel Mike Juliett Romeo'),
+(69, 45, 1, 'Juliett Zulu Hotel Tango Foxtrot Sierra India Unif'),
+(70, 20, 1, 'Mike Oscar Bravo Echo Uniform Tango Romeo Kilo Del'),
+(71, 14, 4, 'November Hotel Foxtrot Zulu Sierra X-ray Delta Gol'),
+(72, 92, 5, 'Delta Echo Tango Kilo X-ray Hotel Charlie Yankee R'),
+(73, 37, 4, 'Kilo Delta Hotel X-ray Papa Bravo Foxtrot Juliett '),
+(74, 83, 5, 'Delta Victor Zulu Quebec Sierra Foxtrot Golf Kilo '),
+(75, 34, 3, 'Papa Bravo Sierra Kilo Zulu Tango Charlie Mike Ind'),
+(76, 66, 1, 'Tango Quebec Mike Echo Victor X-ray Juliett Yankee'),
+(77, 81, 5, 'Romeo November Delta Hotel Lima Foxtrot India Kilo'),
+(78, 32, 3, 'Zulu November Whiskey Oscar Golf Quebec Yankee Alf'),
+(79, 13, 1, 'India Yankee Kilo Bravo Tango Victor Lima Sierra A'),
+(80, 78, 1, 'Sierra Quebec Zulu Oscar Mike Romeo Echo Bravo Ind'),
+(81, 8, 3, 'Delta Victor Lima November Yankee Echo Kilo Golf P'),
+(82, 51, 5, 'Kilo Bravo Romeo Whiskey Tango Zulu Yankee Hotel X'),
+(83, 48, 1, 'Yankee Victor Alfa Zulu Sierra India Papa X-ray De'),
+(84, 32, 2, 'Bravo Hotel Quebec Yankee Golf November Charlie Wh'),
+(85, 86, 5, 'Mike Delta Lima Sierra X-ray Victor November Yanke'),
+(86, 100, 5, 'Alfa Juliett Foxtrot India Romeo Lima Hotel X-ray '),
+(87, 6, 3, 'Victor Yankee Juliett Bravo Quebec India Hotel Zul'),
+(88, 20, 4, 'Hotel Lima Bravo Kilo Zulu Whiskey Yankee X-ray De'),
+(89, 79, 5, 'Victor Quebec Alfa Zulu Kilo Hotel Sierra Delta Ya'),
+(90, 35, 3, 'Juliett Oscar Mike Uniform Bravo Lima Golf Novembe'),
+(91, 61, 5, 'Bravo Tango Echo Whiskey Victor India Oscar Golf S'),
+(92, 67, 2, 'India Zulu Golf Bravo Delta Alfa Oscar Whiskey Rom'),
+(93, 89, 5, 'Uniform Golf Tango Quebec Foxtrot Echo Juliett Vic'),
+(94, 59, 2, 'November Tango Lima Echo Charlie Kilo Quebec Foxtr'),
+(95, 51, 2, 'X-ray Alfa Bravo Uniform Mike Whiskey Zulu Lima Ro'),
+(96, 18, 1, 'Papa India Zulu Lima Quebec Alfa Hotel Juliett Gol'),
+(97, 77, 1, 'November Foxtrot Hotel Bravo Uniform Golf Echo Que'),
+(98, 1, 2, 'Kilo Quebec Zulu Whiskey Bravo X-ray Hotel Yankee '),
+(99, 52, 2, 'Tango Uniform November Bravo Quebec Kilo Delta Rom'),
+(100, 95, 3, 'Kilo Lima Hotel Sierra Mike Golf Romeo Delta Julie');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `room`
+--
+
+CREATE TABLE `room` (
+  `room_no` int(11) NOT NULL,
+  `room_type_id` int(11) NOT NULL,
+  `floor` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `room`
+--
+
+INSERT INTO `room` (`room_no`, `room_type_id`, `floor`) VALUES
+(1, 9, 7),
+(2, 10, 5),
+(3, 3, 2),
+(4, 3, 1),
+(5, 3, 8),
+(6, 3, 9),
+(7, 8, 2),
+(8, 1, 4),
+(9, 7, 3),
+(10, 3, 2),
+(11, 6, 9),
+(12, 3, 2),
+(13, 9, 9),
+(14, 10, 1),
+(15, 1, 5),
+(16, 9, 3),
+(17, 7, 8),
+(18, 5, 8),
+(19, 1, 5),
+(20, 8, 6),
+(21, 5, 8),
+(22, 6, 1),
+(23, 3, 8),
+(24, 9, 4),
+(25, 3, 8),
+(26, 5, 4),
+(27, 5, 2),
+(28, 10, 8),
+(29, 2, 5),
+(30, 7, 5),
+(31, 4, 7),
+(32, 1, 6),
+(33, 7, 2),
+(34, 3, 8),
+(35, 1, 7),
+(36, 8, 5),
+(37, 9, 5),
+(38, 2, 9),
+(39, 2, 8),
+(40, 2, 3),
+(41, 4, 7),
+(42, 8, 1),
+(43, 2, 9),
+(44, 4, 2),
+(45, 1, 1),
+(46, 3, 8),
+(47, 8, 7),
+(48, 2, 9),
+(49, 8, 8),
+(50, 2, 5),
+(51, 2, 9),
+(52, 6, 2),
+(53, 10, 2),
+(54, 4, 7),
+(55, 6, 4),
+(56, 7, 1),
+(57, 10, 2),
+(58, 3, 9),
+(59, 3, 3),
+(60, 6, 8),
+(61, 9, 4),
+(62, 5, 7),
+(63, 8, 7),
+(64, 1, 7),
+(65, 7, 9),
+(66, 9, 3),
+(67, 10, 7),
+(68, 7, 4),
+(69, 4, 2),
+(70, 4, 5),
+(71, 8, 7),
+(72, 6, 6),
+(73, 6, 1),
+(74, 8, 1),
+(75, 5, 1),
+(76, 4, 9),
+(77, 7, 2),
+(78, 7, 1),
+(79, 8, 7),
+(80, 5, 3),
+(81, 10, 2),
+(82, 6, 9),
+(83, 6, 4),
+(84, 10, 3),
+(85, 3, 5),
+(86, 7, 1),
+(87, 6, 2),
+(88, 9, 3),
+(89, 7, 1),
+(90, 2, 5),
+(91, 6, 6),
+(92, 7, 6),
+(93, 1, 5),
+(94, 5, 1),
+(95, 9, 4),
+(96, 2, 3),
+(97, 1, 8),
+(98, 1, 3),
+(99, 7, 4),
+(100, 1, 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `room_type`
+--
+
+CREATE TABLE `room_type` (
+  `room_type_id` int(11) NOT NULL,
+  `name` varchar(50) NOT NULL,
+  `square` int(11) NOT NULL,
+  `bed_num` int(11) NOT NULL,
+  `price` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `room_type`
+--
+
+INSERT INTO `room_type` (`room_type_id`, `name`, `square`, `bed_num`, `price`) VALUES
+(1, 'LUX', 50, 2, 650),
+(2, 'LUX', 50, 2, 650),
+(3, 'LUX', 55, 4, 700),
+(4, 'LUX', 65, 3, 750),
+(5, 'LUX', 75, 2, 800),
+(6, 'Standard', 25, 1, 300),
+(7, 'Standard', 25, 1, 300),
+(8, 'Standard', 30, 2, 350),
+(9, 'Standard', 35, 2, 400),
+(10, 'Standard', 40, 2, 500);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `service`
+--
+
+CREATE TABLE `service` (
+  `service_name` varchar(50) NOT NULL,
+  `dept_id` int(11) NOT NULL,
+  `cost` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `service`
+--
+
+INSERT INTO `service` (`service_name`, `dept_id`, `cost`) VALUES
+('Booking', 6, 150),
+('Chemistry', 1, 100),
+('Cleaning', 1, 120),
+('Computer', 5, 280),
+('Food', 4, 230),
+('Massage', 3, 250),
+('Oxrana', 2, 210),
+('Protect', 2, 190),
+('Repairs', 5, 200),
+('Uborka', 1, 180);
+
+-- --------------------------------------------------------
+
+--
+-- Structure for view `employee_information`
+--
+DROP TABLE IF EXISTS `employee_information`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `employee_information`  AS SELECT `ee`.`first_name` AS `first_name`, `ee`.`last_name` AS `last_name`, `ef`.`phone_no` AS `phone_no`, `ef`.`email` AS `email` FROM (`employee` `ee` join `employee_info` `ef`) WHERE `ee`.`emp_id` = `ef`.`emp_id``emp_id`  ;
+
+-- --------------------------------------------------------
+
+--
+-- Structure for view `newservice_name`
+--
+DROP TABLE IF EXISTS `newservice_name`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `newservice_name`  AS SELECT `service`.`service_name` AS `service_name` FROM `service` WHERE !(`service`.`dept_id` in (select `department`.`dept_id` from `department`))  ;
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `department`
+--
+ALTER TABLE `department`
+  ADD PRIMARY KEY (`dept_id`);
+
+--
+-- Indexes for table `dept_admin`
+--
+ALTER TABLE `dept_admin`
+  ADD PRIMARY KEY (`dept_admin_id`),
+  ADD KEY `dept_id` (`dept_id`);
+
+--
+-- Indexes for table `employee`
+--
+ALTER TABLE `employee`
+  ADD PRIMARY KEY (`emp_id`),
+  ADD KEY `dept_id` (`dept_id`);
+
+--
+-- Indexes for table `employee_info`
+--
+ALTER TABLE `employee_info`
+  ADD KEY `emp_id` (`emp_id`);
+
+--
+-- Indexes for table `guest`
+--
+ALTER TABLE `guest`
+  ADD PRIMARY KEY (`guest_id`),
+  ADD UNIQUE KEY `guest_id_3` (`guest_id`),
+  ADD KEY `guest_id` (`guest_id`),
+  ADD KEY `guest_id_2` (`guest_id`);
+
+--
+-- Indexes for table `guest_info`
+--
+ALTER TABLE `guest_info`
+  ADD KEY `guest_id` (`guest_id`);
+
+--
+-- Indexes for table `payment`
+--
+ALTER TABLE `payment`
+  ADD PRIMARY KEY (`payment_id`),
+  ADD KEY `guest_id` (`guest_id`);
+
+--
+-- Indexes for table `price`
+--
+ALTER TABLE `price`
+  ADD PRIMARY KEY (`item_id`),
+  ADD KEY `dept_id` (`dept_id`);
+
+--
+-- Indexes for table `report`
+--
+ALTER TABLE `report`
+  ADD PRIMARY KEY (`report_id`),
+  ADD KEY `dept_id` (`dept_id`);
+
+--
+-- Indexes for table `reservation`
+--
+ALTER TABLE `reservation`
+  ADD PRIMARY KEY (`reserv_id`),
+  ADD KEY `room_no` (`room_no`);
+
+--
+-- Indexes for table `revenue`
+--
+ALTER TABLE `revenue`
+  ADD PRIMARY KEY (`revenue_id`),
+  ADD KEY `dept_id` (`dept_id`);
+
+--
+-- Indexes for table `review`
+--
+ALTER TABLE `review`
+  ADD PRIMARY KEY (`review_id`),
+  ADD KEY `room_no` (`room_no`);
+
+--
+-- Indexes for table `room`
+--
+ALTER TABLE `room`
+  ADD PRIMARY KEY (`room_no`),
+  ADD KEY `room_type_id` (`room_type_id`);
+
+--
+-- Indexes for table `room_type`
+--
+ALTER TABLE `room_type`
+  ADD PRIMARY KEY (`room_type_id`);
+
+--
+-- Indexes for table `service`
+--
+ALTER TABLE `service`
+  ADD PRIMARY KEY (`service_name`),
+  ADD KEY `dept_id` (`dept_id`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `department`
+--
+ALTER TABLE `department`
+  MODIFY `dept_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+
+--
+-- AUTO_INCREMENT for table `dept_admin`
+--
+ALTER TABLE `dept_admin`
+  MODIFY `dept_admin_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+
+--
+-- AUTO_INCREMENT for table `employee`
+--
+ALTER TABLE `employee`
+  MODIFY `emp_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=152;
+
+--
+-- AUTO_INCREMENT for table `guest`
+--
+ALTER TABLE `guest`
+  MODIFY `guest_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=101;
+
+--
+-- AUTO_INCREMENT for table `payment`
+--
+ALTER TABLE `payment`
+  MODIFY `payment_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=101;
+
+--
+-- AUTO_INCREMENT for table `price`
+--
+ALTER TABLE `price`
+  MODIFY `item_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=101;
+
+--
+-- AUTO_INCREMENT for table `report`
+--
+ALTER TABLE `report`
+  MODIFY `report_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=101;
+
+--
+-- AUTO_INCREMENT for table `reservation`
+--
+ALTER TABLE `reservation`
+  MODIFY `reserv_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=101;
+
+--
+-- AUTO_INCREMENT for table `revenue`
+--
+ALTER TABLE `revenue`
+  MODIFY `revenue_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=101;
+
+--
+-- AUTO_INCREMENT for table `review`
+--
+ALTER TABLE `review`
+  MODIFY `review_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=101;
+
+--
+-- AUTO_INCREMENT for table `room`
+--
+ALTER TABLE `room`
+  MODIFY `room_no` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=101;
+
+--
+-- AUTO_INCREMENT for table `room_type`
+--
+ALTER TABLE `room_type`
+  MODIFY `room_type_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=101;
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `dept_admin`
+--
+ALTER TABLE `dept_admin`
+  ADD CONSTRAINT `dept_admin_ibfk_1` FOREIGN KEY (`dept_id`) REFERENCES `department` (`dept_id`);
+
+--
+-- Constraints for table `employee`
+--
+ALTER TABLE `employee`
+  ADD CONSTRAINT `employee_ibfk_1` FOREIGN KEY (`dept_id`) REFERENCES `department` (`dept_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `employee_info`
+--
+ALTER TABLE `employee_info`
+  ADD CONSTRAINT `employee_info_ibfk_1` FOREIGN KEY (`emp_id`) REFERENCES `employee` (`emp_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `guest`
+--
+ALTER TABLE `guest`
+  ADD CONSTRAINT `guest_ibfk_1` FOREIGN KEY (`room_no`) REFERENCES `room` (`room_no`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `guest_info`
+--
+ALTER TABLE `guest_info`
+  ADD CONSTRAINT `guest_info_ibfk_1` FOREIGN KEY (`guest_id`) REFERENCES `guest` (`guest_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `payment`
+--
+ALTER TABLE `payment`
+  ADD CONSTRAINT `payment_ibfk_1` FOREIGN KEY (`guest_id`) REFERENCES `guest` (`guest_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `price`
+--
+ALTER TABLE `price`
+  ADD CONSTRAINT `price_ibfk_1` FOREIGN KEY (`dept_id`) REFERENCES `department` (`dept_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `report`
+--
+ALTER TABLE `report`
+  ADD CONSTRAINT `report_ibfk_1` FOREIGN KEY (`dept_id`) REFERENCES `department` (`dept_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `reservation`
+--
+ALTER TABLE `reservation`
+  ADD CONSTRAINT `reservation_ibfk_1` FOREIGN KEY (`room_no`) REFERENCES `room` (`room_no`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `revenue`
+--
+ALTER TABLE `revenue`
+  ADD CONSTRAINT `revenue_ibfk_1` FOREIGN KEY (`dept_id`) REFERENCES `department` (`dept_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `review`
+--
+ALTER TABLE `review`
+  ADD CONSTRAINT `review_ibfk_2` FOREIGN KEY (`room_no`) REFERENCES `room` (`room_no`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `room`
+--
+ALTER TABLE `room`
+  ADD CONSTRAINT `room_ibfk_1` FOREIGN KEY (`room_type_id`) REFERENCES `room_type` (`room_type_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `service`
+--
+ALTER TABLE `service`
+  ADD CONSTRAINT `service_ibfk_1` FOREIGN KEY (`dept_id`) REFERENCES `department` (`dept_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+COMMIT;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
